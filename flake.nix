@@ -3,17 +3,17 @@
     
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
-    }
+    };
 
-    outputs = { self, pkgs,  }:
+    outputs = { self, nixpkgs }:
     let
         system = "x86_64-linux";
-        pkgs = nixpkgs.${system}.legacyPackages;
+        pkgs = nixpkgs.legacyPackages.${system};
     in {
         devShells.${system}.default = pkgs.mkShell {
             nativeBuildInputs = [
-                rustc
-                cargo
+                pkgs.rustc
+                pkgs.cargo
             ];
         };
         packages.${system}.default = pkgs.rustPlatform.buildRustPackage rec {
@@ -21,6 +21,6 @@
             version = "0.0.0";
             cargoLock.lockFile = ./Cargo.lock;
             src = pkgs.lib.cleanSource ./.;
-        }
-    }
+        };
+    };
 }
