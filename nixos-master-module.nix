@@ -1,17 +1,17 @@
-{ config, pkgs }:
+{ config, pkgs, lib, ... }:
 let
     cfg = config.services.nixos-mastery;
 in {
     options.services.nixos-mastery = {
-        enable = pkgs.lib.mkEnableOption "nixos-mastery";
-        port = pkgs.lib.mkOption {
-            type = pkgs.lib.types.port;
+        enable = lib.mkEnableOption "nixos-mastery";
+        port = lib.mkOption {
+            type = lib.types.port;
             default = 3000;
             description = "Port to listen on";
         };
     };
 
-    config = pkgs.lib.mkIf cfg.enable {
+    config = lib.mkIf cfg.enable {
         systemd.services.nixos-mastery = {
             description = "Nixos mastery example daemon";
             serviceConfig = {

@@ -1,4 +1,4 @@
-{ self, pkgs }:
+{ self, pkgs }:
 pkgs.nixosTest {
     name = "Nixos mastery service test";
 
