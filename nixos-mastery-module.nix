@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
     cfg = config.services.nixos-mastery;
 in {
@@ -15,8 +15,8 @@ in {
         systemd.services.nixos-mastery = {
             description = "Nixos mastery example daemon";
             serviceConfig = {
-                ExecStart = "${pkgs.nixos-mastery}/bin/nixos-mastery --port=${builtints.toString cfg.port}";
-            }
+                ExecStart = "${pkgs.nixos-mastery}/bin/nixos-mastery --port=${builtins.toString cfg.port}";
+            };
             wantedBy = [ "multi-user.target" ];
         };
     };
