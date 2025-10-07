@@ -10,12 +10,7 @@
         system = "x86_64-linux";
         pkgs = nixpkgs.legacyPackages.${system};
     in {
-        devShells.${system}.default = pkgs.mkShell {
-            nativeBuildInputs = [
-                pkgs.rustc
-                pkgs.cargo
-            ];
-        };
+        devShells.${system}.default = pkgs.callPackage ./shell.nix;
         packages.${system}.default = pkgs.rustPlatform.buildRustPackage rec {
             pname = "nixos-mastery";
             version = "0.0.0";
