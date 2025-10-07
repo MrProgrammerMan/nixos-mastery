@@ -11,11 +11,6 @@
         pkgs = nixpkgs.legacyPackages.${system};
     in {
         devShells.${system}.default = pkgs.callPackage ./shell.nix { inherit pkgs; };
-        packages.${system}.default = pkgs.rustPlatform.buildRustPackage rec {
-            pname = "nixos-mastery";
-            version = "0.0.0";
-            cargoLock.lockFile = ./Cargo.lock;
-            src = pkgs.lib.cleanSource ./.;
-        };
+        packages.${system}.default = pkgs.callPackage ./nixos-mastery.nix { inherit pkgs; inherit lib; };
     };
 }
