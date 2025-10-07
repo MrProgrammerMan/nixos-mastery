@@ -1,4 +1,4 @@
-{ pkgs, lib }:
+{ pkgs }:
 pkgs.rustPlatform.buildRustPackage rec {
     pname = "nixos-mastery";
     version = "0.0.0";

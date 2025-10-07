@@ -11,6 +11,6 @@
         pkgs = nixpkgs.legacyPackages.${system};
     in {
         devShells.${system}.default = pkgs.callPackage ./shell.nix { inherit pkgs; };
-        packages.${system}.default = pkgs.callPackage ./nixos-mastery.nix { inherit pkgs; inherit lib; };
+        packages.${system}.default = pkgs.callPackage ./nixos-mastery.nix { inherit pkgs; };
     };
 }
