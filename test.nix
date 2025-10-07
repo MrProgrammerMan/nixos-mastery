@@ -28,7 +28,6 @@ pkgs.nixosTest {
 
         server.wait_for_unit("nixos-mastery.service")
         server.wait_for_open_port(${builtins.toString nodes.server.services.nixos-mastery.port})
-        client.wait_for_unit("network-online.target")
 
         output = client.succeed(f"curl -s http://server:{PORT}/")
     '';
