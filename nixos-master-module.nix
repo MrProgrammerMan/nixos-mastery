@@ -1,0 +1,23 @@
+{ config, pkgs }:
+let
+    cfg = config.services.nixos-mastery;
+in {
+    options.services.nixos-mastery = {
+        enable = pkgs.lib.mkEnableOption "nixos-mastery";
+        port = pkgs.lib.mkOption {
+            type = pkgs.lib.types.port;
+            default = 3000;
+            description = "Port to listen on";
+        };
+    };
+
+    config = pkgs.lib.mkIf cfg.enable {
+        systemd.services.nixos-mastery = {
+            description = "Nixos mastery example daemon";
+            serviceConfig = {
+                ExecStart = "${pkgs.nixos-mastery}/bin/nixos-mastery --port=${builtints.toString cfg.port}";
+            }
+            wantedBy = [ "multi-user.target" ];
+        };
+    };
+}
