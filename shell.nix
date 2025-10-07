@@ -4,4 +4,4 @@ pkgs.mkShell {
         pkgs.rustc
         pkgs.cargo
     ];
-};
+}
