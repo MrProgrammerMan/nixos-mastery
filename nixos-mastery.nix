@@ -1,5 +1,5 @@
 { pkgs }:
-pkgs.rustPlatform.buildRustPackage rec {
+pkgs.rustPlatform.buildRustPackage {
     pname = "nixos-mastery";
     version = "0.0.0";
     cargoLock.lockFile = ./Cargo.lock;
